@@ -16,5 +16,5 @@ export class RouteService {
     return of(testData).toPromise()
     .then((data: SelectItem[]) => data);
   }
-  
+
 }

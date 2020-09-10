@@ -41,10 +41,10 @@ export class RouteHandlingComponent implements OnInit {
 
   CalculateRoute(): void {
     if (this.PickupCity != null && this.DestinationCity != null) {
-      //Go to next page
+      // Go to next page
       console.log('Navigere til næste side');
     } else {
-      //error message
+      // error message
       console.log('Pickup eller destination er tom');
 
     }

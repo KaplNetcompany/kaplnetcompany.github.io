@@ -33,6 +33,6 @@ export class RouteListComponent implements OnInit {
 
   GoBack(): void {
     console.log('Navigating back');
-    //this.router.navigate()
+    // this.router.navigate()
   }
 }
