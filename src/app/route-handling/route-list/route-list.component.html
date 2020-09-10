@@ -1,0 +1,53 @@
+<div class="p-d-flex p-flex-column">
+    <div class="p-d-flex p-p-5">
+        <div class="p-d-flex p-flex-column p-d-jc-around" style="width:50%">
+            <h1>{{PAGETITLE}}</h1>
+            <div class="p-field-checkbox">
+                <label for="avoidPlane">{{AVOIDPLANE}}</label>
+                <input id="avoidPlane" type="checkbox" [(ngModel)]="avoidPlane">
+            </div>
+            <div class="p-field-checkbox">
+                <label for="avoidShip">{{AVOIDSHIP}}</label>
+                <input id="avoidShip" type="checkbox" [(ngModel)]="avoidPlane">
+            </div>
+        </div>
+        <div class="logo">
+            <img src="../../assets/images/logo.png">
+        </div>
+    </div>
+    <div>
+        Tabel
+        <p-table [value]="routes">
+            <ng-template pTemplate="caption">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    Routes
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>{{NAME}}</th>
+                    <th>{{PRICE}}</th>
+                    <th>{{TIME}}</th>
+                    <th>{{ROUTETYPE}}</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-route>
+                <tr>
+                    <td>{{route.name}}</td>
+                    <td>{{route.price | currency:'USD'}}</td>
+                    <td>{{route.time}}</td>
+                    <td>{{route.routeType.priority}}</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    In total there are {{routes ? routes.length : 0 }} routes.
+                </div>
+            </ng-template>
+        </p-table>
+        
+    </div>
+    <div class="p-d-flex p-jc-end">
+        <button pButton type="button" label="{{BACK}}" (click)="GoBack()"></button>
+    </div>
+</div>
