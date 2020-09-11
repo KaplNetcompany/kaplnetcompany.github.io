@@ -22,17 +22,17 @@ const carWithPlane: RouteType = {
 
 export const ROUTES: DeliveryRoute[] = [
     {
-        id: 1, route: 'Cairo - Victoriasøen', price: 24, totalTime: 20, tracking: true, routeType: onlyCar, routes:
+        id: 1, route: 'Tanger - Marrakesh - Dakar - Sierra Leone', price: 24, totalTime: 20, tracking: true, routeType: onlyCar, routes:
             [{
                 step: 1,
-                startLocation: 'Cairo',
-                endLocation: 'Victoriasøen',
+                startLocation: 'Tanger',
+                endLocation: 'Sierra Leone',
                 time: 20,
                 transportType: TransportType.Car
             }]
     },
     {
-        id: 2, route: 'Tanger - Guldkysten', price: 40, totalTime: 15, tracking: false, routeType: carWithPlane, routes:
+        id: 2, route: 'Tanger - Marrakesh - Sierra Leone', price: 40, totalTime: 15, tracking: false, routeType: carWithPlane, routes:
             [{
                 step: 1,
                 startLocation: 'Tanger',
@@ -43,23 +43,23 @@ export const ROUTES: DeliveryRoute[] = [
             {
                 step: 2,
                 startLocation: 'Marrakesh',
-                endLocation: 'Guldkysten',
+                endLocation: 'Sierra Leone',
                 time: 5,
                 transportType: TransportType.Plane
             }
             ]
     },
-    { id: 3, route: 'St. Helena - De Kanariske Øer', price: 30, totalTime: 18, tracking: false, routeType: carWithAll, routes:
+    { id: 3, route: 'Tanger - Marrakesh - Dakar - Sierra Leone', price: 30, totalTime: 18, tracking: false, routeType: carWithAll, routes:
     [{
         step: 1,
-        startLocation: 'St. Helena',
-        endLocation: 'Sierra Leone',
+        startLocation: 'Tanger',
+        endLocation: 'Marrakesh',
         time: 5,
         transportType: TransportType.Plane
     },
     {
         step: 2,
-        startLocation: 'Sierra Leone',
+        startLocation: 'Marrakesh',
         endLocation: 'Dakar',
         time: 3,
         transportType: TransportType.Car
@@ -67,7 +67,7 @@ export const ROUTES: DeliveryRoute[] = [
     {
         step: 3,
         startLocation: 'Dakar',
-        endLocation: 'De Kanariske Øer',
+        endLocation: 'Sierra Leone',
         time: 10,
         transportType: TransportType.Ship
     }
