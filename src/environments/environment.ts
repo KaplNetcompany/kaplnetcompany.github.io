@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseUrl: 'http://wa-tlpl.azurewebsites.net',
+  apiKey: '3964FD89-D20A-4280-8AD5-854F66674CD8'
 };
 
 /*

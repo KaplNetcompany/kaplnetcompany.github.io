@@ -7,13 +7,13 @@
                     <div class="p-field">
                         <label for="PickupCity">{{PICKUPCITY}}</label>
                         <p-dropdown id="PickupCity" [options]="cities" placeholder="{{SELECTCITY}}"
-                            [(ngModel)]="PickupCity" [filter]="true">
+                            [(ngModel)]="PickupCity" [filter]="true" optionLabel="name">
                         </p-dropdown>
                     </div>
                     <div class="p-field">
                         <label for="DestinationCity">{{DESTINATIONCITY}}</label>
                         <p-dropdown id="DestinationCity" [options]="cities" placeholder="{{SELECTCITY}}"
-                            [(ngModel)]="DestinationCity" [filter]="true">
+                            [(ngModel)]="DestinationCity" [filter]="true" optionLabel="name">
                         </p-dropdown>
                     </div>
                     <div class="p-field-checkbox">
@@ -23,9 +23,7 @@
                 </div>
             </div>
         </div>
-        <div class="logo">
-            <img src="../../assets/images/logo.png">
-        </div>
+        <app-logo></app-logo>
     </div>
     <div class="p-d-flex p-jc-center">
         <button pButton type="button" label="{{CALCULATEROUTE}}" (click)="CalculateRoute()"></button>

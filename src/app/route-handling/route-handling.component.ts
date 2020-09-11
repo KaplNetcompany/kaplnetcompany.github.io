@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { City } from '../backend-datamodels/city';
+import { Router } from '@angular/router';
+import { StorageService } from '../services/storage.service';
 import { RouteService } from '../services/route.service';
-import { SelectItem } from 'primeng/api/selectitem';
-
-
 
 @Component({
   selector: 'app-route-handling',
@@ -13,8 +13,9 @@ import { SelectItem } from 'primeng/api/selectitem';
 
 
 export class RouteHandlingComponent implements OnInit {
-  routeservice: RouteService;
-  cities: SelectItem[];
+
+
+  cities: City[];
 
   PAGETITLE = 'Ruteplanlægning';
   SELECTCITY = 'Vælg by';
@@ -23,30 +24,38 @@ export class RouteHandlingComponent implements OnInit {
   RECOMMENDED = 'Anbefalet pakke';
   CALCULATEROUTE = 'Beregn Rute';
 
-  PickupCity: SelectItem;
-  DestinationCity: SelectItem;
+  PickupCity: City;
+  DestinationCity: City;
   recommended = false;
 
+  router: Router;
+  storageService: StorageService;
+  routeservice: RouteService;
 
-  constructor(routeservice: RouteService) {
+  constructor(
+    router: Router,
+    storageservice: StorageService,
+    routeservice: RouteService,
+    ) {
+    this.router = router;
+    this.storageService = storageservice;
     this.routeservice = routeservice;
   }
 
   ngOnInit(): void {
-    this.routeservice.getResults()
-      .then((data: SelectItem[]) => {
-        this.cities = data;
-      });
+    this.routeservice.getCitites()
+    .then((data: City[]) => {
+      this.cities = data;
+    });
   }
 
   CalculateRoute(): void {
     if (this.PickupCity != null && this.DestinationCity != null) {
-      // Go to next page
-      console.log('Navigere til næste side');
+      this.storageService.storeSelectedDelivery(this.PickupCity.name, this.DestinationCity.name, this.recommended);
+      this.router.navigate(['/', 'route-list']);
     } else {
       // error message
       console.log('Pickup eller destination er tom');
-
     }
   }
 }

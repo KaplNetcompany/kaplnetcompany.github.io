@@ -1,48 +1,42 @@
 <div class="p-d-flex p-flex-column">
-    <div class="p-d-flex p-p-5">
+    <div class="p-d-flex">
         <div class="p-d-flex p-flex-column p-d-jc-around" style="width:50%">
             <h1>{{PAGETITLE}}</h1>
-            <div class="p-field-checkbox">
+            <div class="p-field-checkbox p-ml-5">
                 <label for="avoidPlane">{{AVOIDPLANE}}</label>
-                <input id="avoidPlane" type="checkbox" [(ngModel)]="avoidPlane">
+                <input id="avoidPlane" type="checkbox" (change)="filterList()" [(ngModel)]="avoidPlane">
             </div>
-            <div class="p-field-checkbox">
+            <div class="p-field-checkbox p-ml-5">
                 <label for="avoidShip">{{AVOIDSHIP}}</label>
-                <input id="avoidShip" type="checkbox" [(ngModel)]="avoidPlane">
+                <input id="avoidShip" type="checkbox" (change)="filterList()" [(ngModel)]="avoidShip">
             </div>
         </div>
-        <div class="logo">
-            <img src="../../assets/images/logo.png">
-        </div>
+        <app-logo></app-logo>
     </div>
-    <div>
-        Tabel
-        <p-table [value]="routes">
-            <ng-template pTemplate="caption">
-                <div class="p-d-flex p-ai-center p-jc-between">
-                    Routes
-                </div>
-            </ng-template>
+    <div class="p-m-5">
+        <p>{{TABLEDESCRIPTION}}</p>
+        <p-table [value]="filteredRoutes" selectionMode="single" [(selection)]="selectedRoute" (onRowSelect)="onRowSelect($event)" dataKey="id">
             <ng-template pTemplate="header">
                 <tr>
-                    <th>{{NAME}}</th>
-                    <th>{{PRICE}}</th>
-                    <th>{{TIME}}</th>
-                    <th>{{ROUTETYPE}}</th>
+                    <th>{{ROUTE}}</th>
+                    <th pSortableColumn="price">{{PRICE}}<p-sortIcon field="price"></p-sortIcon></th>
+                    <th pSortableColumn="totalTime">{{TIME}}<p-sortIcon field="totalTime"></p-sortIcon></th>
+                    <th pSortableColumn="routeType.priority">{{ROUTETYPES}}<p-sortIcon field="routeType.priority"></p-sortIcon></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-route>
-                <tr>
-                    <td>{{route.name}}</td>
+                <tr [pSelectableRow]="route">
+                    <td>{{route.route}}</td>
                     <td>{{route.price | currency:'USD'}}</td>
-                    <td>{{route.time}}</td>
-                    <td>{{route.routeType.priority}}</td>
+                    <td>{{route.totalTime}}</td>
+                    <td>
+                        <div class="p-d-flex p-flex p-jc-around">
+                        <app-transport-icon-display *ngIf="route.routeType.car" transportType="{{tranportTypeCar}}"></app-transport-icon-display>
+                        <app-transport-icon-display *ngIf="route.routeType.plane" transportType="{{tranportTypePlane}}"></app-transport-icon-display>
+                        <app-transport-icon-display *ngIf="route.routeType.ship" transportType="{{tranportTypeShip}}"></app-transport-icon-display>
+                    </div>
+                    </td>
                 </tr>
-            </ng-template>
-            <ng-template pTemplate="summary">
-                <div class="p-d-flex p-ai-center p-jc-between">
-                    In total there are {{routes ? routes.length : 0 }} routes.
-                </div>
             </ng-template>
         </p-table>
         
