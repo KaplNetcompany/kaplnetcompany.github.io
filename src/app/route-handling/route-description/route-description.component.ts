@@ -17,7 +17,7 @@ export class RouteDescriptionComponent implements OnInit {
   STEP = 'Trin';
   STARTLOCATION = 'Start by';
   ENDLOCATION = 'Slut by';
-  TIME = 'Tid';
+  TIME = 'Tid(timer)';
   TRANSPORTTYPE = 'Transporttype';
   TRACKING = 'Tracking';
   PAGETITLE = 'Rutebeskrivelse';
